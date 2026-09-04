@@ -15,8 +15,6 @@ Personal configuration backup for a Niri + Noctalia desktop on Arch Linux.
 
 ## Dependencies
 
-Compiled from every binary referenced across `niri/config.kdl`, `alacritty/alacritty.toml`, `fastfetch/config.jsonc`, and `hyfetch.json`. Run `./install.sh` to install all of these in one go (official repo packages via `pacman`, AUR packages via `paru`/`yay` if available).
-
 **Core**
 - `niri` — compositor
 - `noctalia-shell` (AUR — check current package name, e.g. `noctalia-shell-git`) — bar/shell, launched via `spawn-at-startup "noctalia"`
