@@ -11,9 +11,14 @@ Personal configuration backup for a Niri + Noctalia desktop on Arch Linux.
 | `alacritty/`          | `~/.config/alacritty`                                            | Terminal config + theme |
 | `fastfetch/`          | `~/.config/fastfetch`                                            | System info tool, custom ASCII logo + theme |
 | `hyfetch.json`        | `~/.config/hyfetch.json`                                         | Single file, lives directly in `~/.config` |
+| `wallpapers/`         | `~/Pictures/Wallpapers`                                          | ~170 wallpapers, ~780MB total — see note below |
 | `install.sh`          | —                                                                 | Installs every dependency below in one go |
 
+> **Repo size note:** the `wallpapers/` folder makes this a large (~780MB) git repo. Clones/pulls/pushes will be slower than a typical dotfiles repo. If this grows much further, consider migrating `wallpapers/` to [Git LFS](https://git-lfs.com/) or excluding it from a fresh clone with a sparse checkout.
+
 ## Dependencies
+
+Compiled from every binary referenced across `niri/config.kdl`, `alacritty/alacritty.toml`, `fastfetch/config.jsonc`, and `hyfetch.json`. Run `./install.sh` to install all of these in one go (official repo packages via `pacman`, AUR packages via `paru`/`yay` if available).
 
 **Core**
 - `niri` — compositor
@@ -67,6 +72,7 @@ Personal configuration backup for a Niri + Noctalia desktop on Arch Linux.
    ln -s ~/dotfiles/alacritty ~/.config/alacritty
    ln -s ~/dotfiles/fastfetch ~/.config/fastfetch
    ln -s ~/dotfiles/hyfetch.json ~/.config/hyfetch.json
+   ln -s ~/dotfiles/wallpapers ~/Pictures/Wallpapers
    ```
 4. Check machine-specific values before relying on the config:
    - `output "DP-4" { mode "2560x1440@240.002" }` and the commented `eDP-1` block are hardware-specific.
@@ -84,3 +90,7 @@ git add -A
 git commit -m "update configs"
 git push
 ```
+
+## Auth
+
+This repo is pushed over SSH. If cloning/pushing fails with an auth error, make sure your SSH key is added to your GitHub account and the remote uses the `git@github.com:...` form, not `https://`.
