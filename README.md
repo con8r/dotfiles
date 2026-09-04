@@ -7,14 +7,52 @@ Personal configuration backup for a Niri + Noctalia desktop on Arch Linux.
 | Folder / File       | Symlinked to                                                  | Notes |
 |----------------------|-----------------------------------------------------------------|-------|
 | `niri/`              | `~/.config/niri`                                                | Compositor config (`config.kdl`) |
-| `noctalia/`           | `~/.config/noctalia` **or** `~/.config/quickshell/noctalia-shell` | Depends on Noctalia version — v5 uses `~/.config/noctalia` (TOML), v4 (Quickshell-based) uses the quickshell path. Check which one applies before restoring. |
-| `alacritty/`          | `~/.config/alacritty`                                            | Terminal config |
-| `fastfetch/`          | `~/.config/fastfetch`                                            | System info fetch tool |
-| `hyfetch.json`        | `~/.config/hyfetch.json`                                         | Single file, not a folder — lives directly in `~/.config` |
+| `noctalia/`           | `~/.config/noctalia`                                             | Noctalia v5 settings (`settings.json`) |
+| `alacritty/`          | `~/.config/alacritty`                                            | Terminal config + theme |
+| `fastfetch/`          | `~/.config/fastfetch`                                            | System info tool, custom ASCII logo + theme |
+| `hyfetch.json`        | `~/.config/hyfetch.json`                                         | Single file, lives directly in `~/.config` |
+
+## Dependencies
+
+Compiled from every binary referenced across `niri/config.kdl`, `alacritty/alacritty.toml`, `fastfetch/config.jsonc`, and `hyfetch.json`.
+
+**Core**
+- `niri` — compositor
+- `noctalia-shell` (AUR — check current package name, e.g. `noctalia-shell-git`) — bar/shell, launched via `spawn-at-startup "noctalia"`
+- `alacritty` — terminal (`Mod+T`)
+
+**Fonts**
+- `ttf-jetbrains-mono-nerd` — used in `alacritty.toml`
+
+**System / session**
+- `polkit-kde-agent` — spawned as `polkit-kde-authentication-agent-1`
+- `polkit-gnome` — spawned as `/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1`
+  - Both polkit agents are spawned at startup in `config.kdl` — likely redundant, worth picking one.
+- `swaylock` — screen lock (`Super+Alt+L`)
+- `orca` — screen reader toggle (`Super+Alt+S`)
+- `pipewire` + `wireplumber` — volume/mic keys via `wpctl`
+- `playerctl` — media keys
+- `brightnessctl` — brightness keys
+
+**Wallpaper**
+- `linux-wallpaperengine` (AUR) — spawned at startup targeting output `DP-4`
+
+**Apps bound in `binds {}`**
+- `zen-browser` (AUR or Flatpak) — `Mod+B`
+- `flatpak` + Spotify Flatpak (`com.spotify.Client`) — `Mod+Y`
+- `discord` — `Mod+D`
+- `nautilus` — `Mod+E`
+
+**Fetch tools**
+- `fastfetch` — used as the hyfetch backend and directly
+- `hyfetch` (AUR or `pip install hyfetch`)
+
+**Possibly leftover**
+- `waybar` — still has a `spawn-at-startup "waybar"` line in `config.kdl` even though Noctalia provides the bar. Confirm whether this is intentional (e.g. fallback bar) or a leftover from before switching to Noctalia.
 
 ## Restoring on a new machine
 
-1. Install the required packages (niri, noctalia, alacritty, fastfetch, hyfetch).
+1. Install the packages listed above.
 2. Clone this repo:
    ```
    git clone git@github.com:con8r/dotfiles.git ~/dotfiles
@@ -27,7 +65,10 @@ Personal configuration backup for a Niri + Noctalia desktop on Arch Linux.
    ln -s ~/dotfiles/fastfetch ~/.config/fastfetch
    ln -s ~/dotfiles/hyfetch.json ~/.config/hyfetch.json
    ```
-4. Check machine-specific values before relying on the config — output/monitor names and resolutions in the niri config's `output` block are hardware-specific and will need adjusting.
+4. Check machine-specific values before relying on the config:
+   - `output "DP-4" { mode "2560x1440@240.002" }` and the commented `eDP-1` block are hardware-specific.
+   - The `linux-wallpaperengine` spawn line hardcodes both an output name (`DP-4`) and a wallpaper path under `/home/con8r/...` — update both for a new machine/user.
+   - `hyfetch.json` also hardcodes `/home/con8r/.config/fastfetch/con8rfetch.txt` as the ASCII path.
 5. Reload Niri or log back in.
 
 ## Updating the backup
