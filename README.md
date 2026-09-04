@@ -11,10 +11,11 @@ Personal configuration backup for a Niri + Noctalia desktop on Arch Linux.
 | `alacritty/`          | `~/.config/alacritty`                                            | Terminal config + theme |
 | `fastfetch/`          | `~/.config/fastfetch`                                            | System info tool, custom ASCII logo + theme |
 | `hyfetch.json`        | `~/.config/hyfetch.json`                                         | Single file, lives directly in `~/.config` |
+| `install.sh`          | —                                                                 | Installs every dependency below in one go |
 
 ## Dependencies
 
-Compiled from every binary referenced across `niri/config.kdl`, `alacritty/alacritty.toml`, `fastfetch/config.jsonc`, and `hyfetch.json`.
+Compiled from every binary referenced across `niri/config.kdl`, `alacritty/alacritty.toml`, `fastfetch/config.jsonc`, and `hyfetch.json`. Run `./install.sh` to install all of these in one go (official repo packages via `pacman`, AUR packages via `paru`/`yay` if available).
 
 **Core**
 - `niri` — compositor
@@ -25,9 +26,8 @@ Compiled from every binary referenced across `niri/config.kdl`, `alacritty/alacr
 - `ttf-jetbrains-mono-nerd` — used in `alacritty.toml`
 
 **System / session**
-- `polkit-kde-agent` — spawned as `polkit-kde-authentication-agent-1`
 - `polkit-gnome` — spawned as `/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1`
-  - Both polkit agents are spawned at startup in `config.kdl` — likely redundant, worth picking one.
+  - Note: this package was dropped from most distro repos at some point — verify it's still installable, or swap to `polkit-kde-agent` if not.
 - `swaylock` — screen lock (`Super+Alt+L`)
 - `orca` — screen reader toggle (`Super+Alt+S`)
 - `pipewire` + `wireplumber` — volume/mic keys via `wpctl`
@@ -48,14 +48,19 @@ Compiled from every binary referenced across `niri/config.kdl`, `alacritty/alacr
 - `hyfetch` (AUR or `pip install hyfetch`)
 
 **Possibly leftover**
-- `waybar` — still has a `spawn-at-startup "waybar"` line in `config.kdl` even though Noctalia provides the bar. Confirm whether this is intentional (e.g. fallback bar) or a leftover from before switching to Noctalia.
+- `waybar` — still has a `spawn-at-startup "waybar"` line in `config.kdl` even though Noctalia provides the bar. Confirm whether this is intentional (e.g. fallback bar) or a leftover from before switching to Noctalia. Not installed by `install.sh`.
 
 ## Restoring on a new machine
 
-1. Install the packages listed above.
-2. Clone this repo:
+1. Clone this repo:
    ```
    git clone git@github.com:con8r/dotfiles.git ~/dotfiles
+   ```
+2. Install dependencies:
+   ```
+   cd ~/dotfiles
+   chmod +x install.sh
+   ./install.sh
    ```
 3. Symlink each config into place:
    ```
@@ -81,3 +86,7 @@ git add -A
 git commit -m "update configs"
 git push
 ```
+
+## Auth
+
+This repo is pushed over SSH. If cloning/pushing fails with an auth error, make sure your SSH key is added to your GitHub account and the remote uses the `git@github.com:...` form, not `https://`.
