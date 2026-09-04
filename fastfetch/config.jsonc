@@ -1,0 +1,75 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "source": "~/.config/fastfetch/con8rfetch.txt",
+    "type": "auto",
+    "position": "top",
+    "padding": {
+      "left": 2
+    },
+    "color": {
+      "1": "#63ffff",
+      "2": "#63c6c6"
+    }
+  },
+  "display": {
+    "separator": "  ",
+    "color": {
+      "keys": "#ffffff",
+      "output": "white",
+      "title": "#c6c6c6"
+    },
+    "constants": [
+      "\u001b[37m",
+      "\u001b[37m"
+    ],
+    "percent": {
+      "color": {
+        "green": "#e2e2e2",
+        "yellow": "#474747",
+        "red": "#ffb4ab"
+      }
+    }
+  },
+  "modules": [
+    {
+      "type": "custom",
+      "key": "  ╭─con8r-arch─╮"
+    },
+    {
+      "type": "command",
+      "key": "  │ {$2}{$1}  user    │",
+      "text": "echo $USER"
+    },
+    {
+      "type": "kernel",
+      "key": "  │ {$2}{$1}  kernel  │"
+    },
+    {
+      "type": "os",
+      "key": "  │ {$2}{$1}  os      │",
+      "format": "I use {2} btw!"
+    },
+    {
+      "type": "wm",
+      "key": "  │ {$2}{$1}  wm      │"
+    },
+    {
+      "type": "memory",
+      "key": "  │ {$2}{$1}  memory  │"
+    },
+    {
+      "type": "packages",
+      "key": "  │   pkgs    │"
+    },
+    {
+      "type": "custom",
+      "key": "  ╰────────────╯"
+    },
+    {
+      "type": "colors",
+      "key": "  ",
+      "symbol": "circle"
+    }
+  ]
+}
