@@ -90,7 +90,3 @@ git add -A
 git commit -m "update configs"
 git push
 ```
-
-## Auth
-
-This repo is pushed over SSH. If cloning/pushing fails with an auth error, make sure your SSH key is added to your GitHub account and the remote uses the `git@github.com:...` form, not `https://`.
