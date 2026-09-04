@@ -1,0 +1,33 @@
+// Rounded corners + clip contents to them
+window-rule {
+    geometry-corner-radius 20
+    clip-to-geometry true
+}
+
+// Let the Noctalia settings window float instead of tiling
+window-rule {
+    match app-id="dev.noctalia.Noctalia"
+    open-floating true
+    default-column-width { fixed 1080; }
+    default-window-height { fixed 920; }
+}
+
+// Allows notification actions and window activation from Noctalia
+debug {
+    honor-xdg-activation-with-invalid-serial
+}
+
+layer-rule {
+    match namespace="^noctalia-wallpaper"
+    place-within-backdrop true
+}
+
+layout {
+    background-color "transparent"
+}
+
+overview {
+    workspace-shadow { off }
+}
+spawn-at-startup "noctalia"
+

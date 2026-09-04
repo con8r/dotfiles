@@ -1,0 +1,14 @@
+[general]
+import = [
+    "~/.config/alacritty/themes/noctalia.toml",
+]
+
+[window]
+opacity = 0.65
+[window.padding]
+x = 20
+y = 20
+
+[font]
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+size = 13.0
