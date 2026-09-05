@@ -659,7 +659,6 @@ layer-rule {
 }
 
 spawn-at-startup "noctalia"
-spawn-at-startup "linux-wallpaperengine" "--screen-root" "DP-4" "--bg" "/home/con8r/.local/share/Steam/steamapps/workshop/content/431960/3447130445"
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 
 output "DP-4" {
