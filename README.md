@@ -14,8 +14,6 @@ Personal configuration backup for a Niri + Noctalia desktop on Arch Linux.
 | `wallpapers/`         | `~/Pictures/Wallpapers`                                          | ~170 wallpapers, ~780MB total — see note below |
 | `install.sh`          | —                                                                 | Installs every dependency below in one go |
 
-> **Repo size note:** the `wallpapers/` folder makes this a large (~780MB) git repo. Clones/pulls/pushes will be slower than a typical dotfiles repo. If this grows much further, consider migrating `wallpapers/` to [Git LFS](https://git-lfs.com/) or excluding it from a fresh clone with a sparse checkout.
-
 ## Dependencies
 
 Compiled from every binary referenced across `niri/config.kdl`, `alacritty/alacritty.toml`, `fastfetch/config.jsonc`, and `hyfetch.json`. Run `./install.sh` to install all of these in one go (official repo packages via `pacman`, AUR packages via `paru`/`yay` if available).
